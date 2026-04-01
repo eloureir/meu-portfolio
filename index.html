@@ -228,6 +228,114 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
 #mobile-nav a{display:block;padding:14px 28px;font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--line2);transition:color .15s,background .15s;}
 #mobile-nav a:hover{color:var(--accent);background:rgba(255,32,32,.04);}
 
+/* ===================== PROJECTS ===================== */
+.projects-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.proj-card{
+  display:flex;
+  flex-direction:column;
+  background:var(--bg2);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  transition:border-color .25s,transform .3s var(--ease);
+}
+.proj-card:hover{
+  border-color:rgba(255,32,32,.35);
+  transform:translateY(-4px);
+}
+
+.proj-img-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:var(--bg3);
+  flex-shrink:0;
+}
+.proj-img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top;
+  display:block;
+  transition:transform .5s var(--ease);
+}
+.proj-img-wrap:hover img{transform:scale(1.04);}
+
+.proj-img-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:.65rem;
+  color:var(--dim);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  background:repeating-linear-gradient(45deg,transparent,transparent 10px,var(--line2) 10px,var(--line2) 11px);
+}
+
+.proj-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(12,12,14,.7);
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+  padding:16px;
+  opacity:0;
+  transition:opacity .25s;
+  backdrop-filter:blur(4px);
+}
+.proj-img-wrap:hover .proj-overlay{opacity:1;}
+
+.proj-link-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 14px;
+  font-family:var(--mono);
+  font-size:.63rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.25);
+  color:var(--text);
+  border-radius:3px;
+  text-decoration:none;
+  transition:border-color .2s,color .2s;
+  cursor:none;
+}
+.proj-link-btn:hover{border-color:var(--accent);color:var(--accent);}
+.proj-link-btn svg{width:12px;height:12px;}
+
+.proj-body{
+  padding:22px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+}
+.proj-tag{font-family:var(--mono);font-size:.6rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;}
+.proj-title{font-family:var(--serif);font-size:1.4rem;color:var(--text);font-weight:400;line-height:1.2;}
+.proj-desc{font-size:.875rem;color:var(--muted);line-height:1.8;font-weight:300;}
+.proj-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+
+/* STATS */
+.stats-section{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:60px 48px;background:var(--bg2);}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);}
+.stat-card{background:var(--bg2);padding:40px 32px;text-align:center;position:relative;overflow:hidden;transition:background .2s;}
+.stat-card::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--accent);transition:width .4s var(--ease);}
+.stat-card:hover{background:var(--bg3);}
+.stat-card:hover::before{width:80%;}
+.stat-num{font-family:var(--serif);font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:10px;font-weight:400;}
+.stat-label{font-family:var(--mono);font-size:.62rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   #cursor-dot,#cursor-ring{display:none;}
@@ -246,6 +354,8 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
   .tl-item{grid-template-columns:1fr;gap:6px;}
   #contact{padding:88px 24px;}
   footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
+  .projects-grid{grid-template-columns:1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:600px){
   nav{height:54px;padding:0 18px;}
@@ -264,6 +374,8 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
   .contact-link{justify-content:center;}
   footer{padding:20px;font-size:.58rem;}
   .scroll-cue{display:none;}
+  .stats-section{padding:40px 20px;}
+  .stat-num{font-size:2.8rem;}
 }
 </style>
 </head>
@@ -373,7 +485,6 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
     <div class="marquee-item">Spring Boot <span class="marquee-sep">&#9632;</span></div>
     <div class="marquee-item">MySQL <span class="marquee-sep">&#9632;</span></div>
     <div class="marquee-item">Node.js <span class="marquee-sep">&#9632;</span></div>
-
     <div class="marquee-item">React <span class="marquee-sep">&#9632;</span></div>
     <div class="marquee-item">REST APIs <span class="marquee-sep">&#9632;</span></div>
     <div class="marquee-item">JPA / Hibernate <span class="marquee-sep">&#9632;</span></div>
@@ -435,108 +546,78 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
     <h2 class="sec-title">Projetos</h2>
     <div class="sec-line"></div>
   </div>
+
   <div class="projects-grid">
 
-    <!-- CARD 1 — Vertical (imagem em cima) -->
-    <article class="proj-card proj-vertical reveal">
+    <!-- CARD 1 -->
+    <article class="proj-card reveal">
       <div class="proj-img-wrap">
-        <img src="https://github.com/eloureir/meu-portfolio/blob/main/Captura%20de%20tela%202026-03-31%20153959.png?raw=true" alt="Screenshot do Projeto 1">
+        <img
+          src="https://github.com/eloureir/meu-portfolio/blob/main/Captura%20de%20tela%202026-03-31%20153959.png?raw=true"
+          alt="Screenshot do Projeto 1"
+          onerror="this.style.display='none';this.parentElement.querySelector('.proj-img-placeholder').style.display='flex';"
+        >
+        <div class="proj-img-placeholder" style="display:none;">preview</div>
         <div class="proj-overlay">
           <a href="#" class="proj-link-btn" target="_blank">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
             GitHub
           </a>
           <a href="#" class="proj-link-btn" target="_blank">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Demo
           </a>
         </div>
       </div>
       <div class="proj-body">
         <span class="proj-tag">Projeto 01</span>
-        <h3 class="proj-title">Nome do Projeto</h3>
-        <p class="proj-desc">Descrição breve do projeto — o que resolve, como funciona e qual foi o impacto. Coloque aqui os detalhes mais interessantes.</p>
+        <h3 class="proj-title">Cadastro de Usuários</h3>
+        <p class="proj-desc">Projeto feito em HTML, CSS e JavaScript, com a intenção de criar um sistema de gerenciamento de usuários.</p>
         <div class="proj-chips">
-          <span class="chip">Java</span>
-          <span class="chip">Spring Boot</span>
-          <span class="chip">MySQL</span>
+          <span class="chip">HTML</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">CSS</span>
         </div>
       </div>
     </article>
 
-    <!-- CARD 2 — Horizontal (imagem à esquerda) -->
-    <article class="proj-card proj-horizontal reveal">
+    <!-- CARD 2 -->
+    <article class="proj-card reveal">
       <div class="proj-img-wrap">
+        <img
+          src="https://github.com/eloureir/meu-portfolio/blob/main/Captura%20de%20tela%202026-04-01%20102858.png?raw=true"
+          alt="Screenshot do Projeto 2"
+          onerror="this.style.display='none';this.parentElement.querySelector('.proj-img-placeholder').style.display='flex';"
+        >
         <div class="proj-img-placeholder">Em breve</div>
         <div class="proj-overlay">
           <a href="#" class="proj-link-btn" target="_blank">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
             GitHub
           </a>
           <a href="#" class="proj-link-btn" target="_blank">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Demo
           </a>
         </div>
       </div>
       <div class="proj-body">
         <span class="proj-tag">Projeto 02</span>
-        <h3 class="proj-title">Nome do Projeto</h3>
-        <p class="proj-desc">Descrição breve do projeto — o que resolve, como funciona e qual foi o impacto. Coloque aqui os detalhes mais interessantes.</p>
+        <h3 class="proj-title">Gerenciamento de Eventos</h3>
+        <p class="proj-desc">Projeto feito em Java, Spring Boot e Mysql, com a intenção de criar um sistema de gerenciamento de eventos, com o objetivo de facilitar a organização e o gerenciamento de eventos.</p>
         <div class="proj-chips">
-          <span class="chip">Node.js</span>
-          <span class="chip">React</span>
-          <span class="chip">REST API</span>
+          <span class="chip">Java</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">Mysql</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">CSS</span>
+          <span class="chip">HTML</span>
         </div>
       </div>
     </article>
 
   </div>
 </section>
-
-<style>
-/* PROJECTS */
-.projects-grid{display:flex;flex-direction:column;gap:32px;}
-
-/* Vertical card */
-.proj-vertical{display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:border-color .25s,transform .3s var(--ease);}
-.proj-vertical:hover{border-color:rgba(255,32,32,.35);transform:translateY(-4px);}
-.proj-vertical .proj-img-wrap{position:relative;aspect-ratio:16/9;overflow:hidden;}
-
-/* Horizontal card */
-.proj-horizontal{display:grid;grid-template-columns:1fr 1fr;background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:border-color .25s,transform .3s var(--ease);}
-.proj-horizontal:hover{border-color:rgba(255,32,32,.35);transform:translateY(-4px);}
-.proj-horizontal .proj-img-wrap{position:relative;min-height:280px;overflow:hidden;}
-
-/* Shared image */
-.proj-img-wrap{background:var(--bg3);}
-.proj-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.65rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;background:repeating-linear-gradient(45deg,transparent,transparent 10px,var(--line2) 10px,var(--line2) 11px);}
-.proj-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .5s var(--ease);}
-.proj-img-wrap:hover img{transform:scale(1.04);}
-
-/* Overlay buttons */
-.proj-overlay{position:absolute;inset:0;background:rgba(12,12,14,.7);display:flex;align-items:flex-end;gap:10px;padding:20px;opacity:0;transition:opacity .25s;backdrop-filter:blur(4px);}
-.proj-img-wrap:hover .proj-overlay{opacity:1;}
-.proj-link-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);color:var(--text);border-radius:3px;transition:border-color .2s,color .2s;cursor:none;}
-.proj-link-btn:hover{border-color:var(--accent);color:var(--accent);}
-
-/* Card body */
-.proj-body{padding:28px 30px;display:flex;flex-direction:column;justify-content:center;gap:10px;}
-.proj-tag{font-family:var(--mono);font-size:.6rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;}
-.proj-title{font-family:var(--serif);font-size:1.6rem;color:var(--text);font-weight:400;line-height:1.15;}
-.proj-desc{font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;}
-.proj-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
-
-@media(max-width:900px){
-  .proj-horizontal{grid-template-columns:1fr;}
-  .proj-horizontal .proj-img-wrap{min-height:220px;}
-}
-@media(max-width:600px){
-  .proj-vertical .proj-img-wrap{height:200px;}
-  .proj-body{padding:20px;}
-  .proj-title{font-size:1.3rem;}
-}
-</style>
 
 <!-- SKILLS -->
 <section id="skills" class="section">
@@ -558,7 +639,7 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
       <div class="cat-skills">
         <div class="cat-skill-item">
           <div class="skill-name-row"><span class="skill-name-text">Java</span><span class="skill-lvl">70%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.70" data-w="0.70"></div></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="0.70"></div></div>
           <div class="skill-desc-text">OOP, streams, generics, SOLID</div>
         </div>
         <div class="cat-skill-item">
@@ -604,7 +685,6 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
           <div class="skill-bar"><div class="skill-bar-fill" data-w="0.70"></div></div>
           <div class="skill-desc-text">Branches, merge, pull requests</div>
         </div>
-
       </div>
     </div>
 
@@ -707,20 +787,6 @@ footer{border-top:1px solid var(--line2);padding:28px 48px;display:flex;align-it
   </div>
 </section>
 
-<!-- STATS CSS (injected here for simplicity) -->
-<style>
-.stats-section{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:60px 48px;background:var(--bg2);}
-.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);}
-.stat-card{background:var(--bg2);padding:40px 32px;text-align:center;position:relative;overflow:hidden;transition:background .2s;}
-.stat-card::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--accent);transition:width .4s var(--ease);}
-.stat-card:hover{background:var(--bg3);}
-.stat-card:hover::before{width:80%;}
-.stat-num{font-family:var(--serif);font-size:3.5rem;color:var(--accent);line-height:1;margin-bottom:10px;font-weight:400;}
-.stat-label{font-family:var(--mono);font-size:.62rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;}
-@media(max-width:900px){.stats-section{padding:48px 24px;}.stats-inner{grid-template-columns:1fr 1fr;}}
-@media(max-width:600px){.stats-section{padding:40px 20px;}.stats-inner{grid-template-columns:1fr 1fr;}.stat-num{font-size:2.8rem;}}
-</style>
-
 <footer>
   <span>© 2025 Eric Barbosa Loureiro</span>
   <span>Criciúma, SC — Brasil</span>
@@ -783,7 +849,6 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.classList.add('visible');
-    // Animate skill bars
     entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
       const w = parseFloat(bar.dataset.w || 0);
       bar.style.transform = 'scaleX(' + w + ')';
@@ -793,7 +858,6 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 reveals.forEach(el => io.observe(el));
 
-// Initial visible check
 window.addEventListener('load', () => {
   reveals.forEach(el => {
     if (el.getBoundingClientRect().top < window.innerHeight) {
@@ -813,7 +877,6 @@ window.addEventListener('scroll', () => {
 });
 
 // Active nav link on scroll
-const sections = document.querySelectorAll('section[id], div[id="about"]');
 const navLinks = document.querySelectorAll('.nav-links a');
 const ioNav = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -826,7 +889,6 @@ const ioNav = new IntersectionObserver(entries => {
 }, { threshold: 0.4 });
 document.querySelectorAll('section[id]').forEach(s => ioNav.observe(s));
 
-// Add active nav style
 const navStyle = document.createElement('style');
 navStyle.textContent = '.nav-links a.nav-active{color:var(--text);}.nav-links a.nav-active::after{width:100%;}';
 document.head.appendChild(navStyle);
